@@ -13,7 +13,7 @@ export class CommandService {
         // this.initialiser = new Initialiser();
     }
     
-    public async run() {
+    public async run(): Promise<string> {
         switch (this.commands[0]) {
             case "generate":
                 console.log("Generator should be called");
@@ -47,7 +47,7 @@ export class CommandService {
             //     console.log("Builder must be called");
             //     break;
             case "new":
-                await this.newProject(this.commands[1],this.commands.slice(2));
+                return this.newProject(this.commands[1],this.commands.slice(2));
                 break;
             // case "init":
             //     console.log("Initialiser must be called");
@@ -55,12 +55,12 @@ export class CommandService {
             //     // this.initialiser.init();
             //     break;
             default:
-                console.log("This command is not yet defined.");
+                return Promise.reject(`${this.commands.join(" ")} can not yet be handled.`);
                 break;
         } 
     }
 
-    private async newProject(name: string, targets: string[]) {
+    private async newProject(name: string, targets: string[]): Promise<string> {
         if (name.match(/\w+\.\w+/g) === null) {
             name = "playground."+name.toLowerCase();
             info("Capsule name does not contains a namespace. It'll initialised as a playground capsule");
@@ -70,7 +70,7 @@ export class CommandService {
            selectedTargets = await selectTargets(await this.getTargets());
         }
         this.createProjectFiles(name,selectedTargets);
-        
+        return Promise.resolve(`A new capsule created in ${process.cwd()}/${name} successfully`);
     }
 
     private createProjectFiles(name: string,targets: string[]) {
