@@ -33,8 +33,10 @@ const args = minimist(
     }
     
     const command = new CommandService(args._);
-    command.run().then(() => {
-        console.log("Done");
+    command.run().then((message: string) => {
+        success(message);
+    }).catch((reason:string) => {
+        error(reason);
     });    
     
     
