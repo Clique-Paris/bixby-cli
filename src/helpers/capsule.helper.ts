@@ -157,8 +157,6 @@ return `description {
 
 export function createNewCapsule(id: string,targets: string[],username: string): void {
   const capsulePath = process.cwd() + "/" + id; 
-  console.log("Create new capsule function called");
-  console.log("Capsule id");
   shell.mkdir("-p", capsulePath);
   fs.writeFileSync(capsulePath + "/capsule.bxb",capsule_bxb(id,targets),{encoding: "utf8"});
   shell.mkdir("-p", capsulePath + "/assets");
