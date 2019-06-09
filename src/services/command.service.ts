@@ -15,16 +15,9 @@ export class CommandService {
     
     public async run(): Promise<string> {
         switch (this.commands[0]) {
-            case "generate":
-                console.log("Generator should be called");
-                console.log("Module type to generate");
-                console.log(this.commands[1]);
-                console.log("Module type to generate if necessary or the module name to generate");
-                console.log(this.commands[2]);
-                console.log("Module name to generate or undefined");
-                console.log(this.commands[3]);
-                this.generate(this.commands[1],this.commands[2],this.commands[3]);
-                break;
+            // case "generate":
+            //     this.generate(this.commands[1],this.commands[2],this.commands[3]);
+            //     break;
             // case "add":
             //     console.log("Adder mut be called");
             //     break;
@@ -51,7 +44,7 @@ export class CommandService {
                 break;
             // case "init":
             //     console.log("Initialiser must be called");
-            //     //TODO: For intstance we will not use init command
+            //     //TODO: For instance we will not use init command
             //     // this.initialiser.init();
             //     break;
             default:
@@ -78,9 +71,8 @@ export class CommandService {
         createNewCapsule(name,targets,username);
     }
 
-    private generate(module: string, type: string, name: string) {
-        console.log(`${module} module of type ${type} will be created with the name ${name}`);
-    }
+    // private generate(module: string, type: string, name: string) {
+    // }
 
     private async getTargets(): Promise<string[]> {
         var $ = await get("https://bixbydevelopers.com/dev/docs/reference/type/capsule.targets.target");
