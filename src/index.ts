@@ -39,13 +39,3 @@ const args = minimist(
         error(reason);
     });    
     
-    
-    // var args = minimist(process.argv.slice(2), {
-    //     string: [ 'lang' ],
-    //     boolean: [ 'pager' ],
-    //     alias: { h: 'help', v: 'version' },
-    //     default: { lang: 'en' },
-    //     '--': true,
-    //     stopEarly: true, /* populate _ with first non-option */
-    //     unknown: function () { ... } /* invoked on unknown param */
-    //   })
