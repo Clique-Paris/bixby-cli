@@ -11,3 +11,7 @@ export function error(message: string) {
 export function info(message:string) {
     console.info(`${chalk.green("Info")} ${message}`);
 }
+
+export function success(message: string) {
+    console.info(`${chalk.green("Success:")} ${message}`);
+}
