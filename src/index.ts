@@ -3,6 +3,8 @@
 import minimist from "minimist";
 import { Package } from "./structs/Package";
 import { CommandService } from "./services/command.service";
+import { success,error } from "./helpers/logger.helper";
+import chalk from "chalk";
 
 const args = minimist(
     process.argv.slice(2),
@@ -21,7 +23,9 @@ const args = minimist(
     );
     
     if (args.help) {
-        console.log("Help page called");
+        console.info("Available commands:");
+        console.info(`\t${chalk.blue("new")} Creates a new workspace and an initial Bixby capsule`);
+        process.exit(1);
     }
     if (args.version) {
         console.log(new Package().version);
