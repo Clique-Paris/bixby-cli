@@ -22,9 +22,5 @@ export class ShellService {
     }
 
     public info() {
-        console.log("OS platform");
-        console.log(this.platform);
-        console.log("Temporary directory");
-        console.log(this.tmpdir);
     }
 }
