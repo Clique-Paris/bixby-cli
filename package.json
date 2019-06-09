@@ -1,0 +1,45 @@
+{
+  "name": "bixby",
+  "version": "1.0.0",
+  "description": "A CLI for bixby capsule development",
+  "main": "out/out-tsc/src/index.js",
+  "scripts": {
+    "prestart": "tsc",
+    "build": "tsc",
+    "start": "node out/out-tsc/src/index.js",
+    "test": "jasmine"
+  },
+  "bin": {
+    "bxb": "./out/out-tsc/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaanyagci/bixby-cli.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "Nearley",
+    "minimist"
+  ],
+  "author": "Kaan Yagci <kaan@kaanyagci.com>",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/kaanyagci/bixby-cli/issues"
+  },
+  "homepage": "https://github.com/kaanyagci/bixby-cli#readme",
+  "dependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/cheerio": "^0.22.11",
+    "@types/configstore": "^4.0.0",
+    "@types/inquirer": "^6.0.3",
+    "@types/minimist": "^1.2.0",
+    "@types/nearley": "^2.11.0",
+    "@types/shelljs": "^0.8.5",
+    "chalk": "^2.4.2",
+    "cheerio": "^1.0.0-rc.3",
+    "configstore": "^4.0.0",
+    "inquirer": "^6.3.1",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.3"
+  }
+}
