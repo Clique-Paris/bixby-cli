@@ -2,17 +2,17 @@ import * as shell from "shelljs";
 
 export class ShellService {
     private home: string;
-    private platform: string;
-    private tmpdir: string;
+    // private platform: string;
+    // private tmpdir: string;
 
     constructor (
         home: string,
-        platform: string,
-        tmpdir: string
+        // platform: string,
+        // tmpdir: string
     ) {
         this.home = home;
-        this.platform = platform;
-        this.tmpdir = tmpdir;
+        // this.platform = platform;
+        // this.tmpdir = tmpdir;
     }
 
     public find(fileName: string) {
