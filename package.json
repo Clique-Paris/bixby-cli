@@ -7,7 +7,7 @@
         "prestart": "tsc",
         "build": "tsc",
         "start": "node out/out-tsc/src/index.js",
-        "test": "jasmine"
+        "test": "npm run build && node node_modules/jasmine/bin/jasmine"
     },
     "bin": {
         "bxb": "./out/out-tsc/src/index.js"
