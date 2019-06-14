@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/bixby-cli
+    docker:
+      image: circleci/node
+      steps:
+      - checkout
+      - run:
+        name: install-typescript
+        command: npm install -g typescript
+      - run:
+        name: install-npm-dependencies
+        command: npm install
+      - run:
+        name: test
+        command: npm test
+            
