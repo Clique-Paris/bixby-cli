@@ -5,14 +5,14 @@ jobs:
     docker:
       image: circleci/node
       steps:
-      - checkout
-      - run:
-        name: install-typescript
-        command: npm install -g typescript
-      - run:
-        name: install-npm-dependencies
-        command: npm install
-      - run:
-        name: test
-        command: npm test
+        - checkout
+        - run:
+          name: install-typescript
+          command: npm install -g typescript
+        - run:
+          name: install-npm-dependencies
+          command: npm install
+        - run:
+          name: test
+          command: npm test
             
