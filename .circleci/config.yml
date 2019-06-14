@@ -7,12 +7,12 @@ jobs:
       steps:
         - checkout
         - run:
-          name: install-typescript
-          command: npm install -g typescript
+            name: install-typescript
+            command: npm install -g typescript
         - run:
-          name: install-npm-dependencies
-          command: npm install
+            name: install-npm-dependencies
+            command: npm install
         - run:
-          name: test
-          command: npm test
+            name: test
+            command: npm test
             
