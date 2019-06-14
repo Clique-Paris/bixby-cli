@@ -6,13 +6,7 @@ jobs:
       image: circleci/node
       steps:
         - checkout
-        - run:
-            name: install-typescript
-            command: npm install -g typescript
-        - run:
-            name: install-npm-dependencies
-            command: npm install
-        - run:
-            name: test
-            command: npm test
-            
+        - run: npm install -g typescript
+        - run: npm install
+        - run: npm test
+        
