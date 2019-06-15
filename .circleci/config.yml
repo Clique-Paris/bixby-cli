@@ -25,4 +25,18 @@ jobs:
       - run:
           name: test
           command: npm test
-            
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/bixby-cli
+      - run:
+          name: Set registry URL
+          command: npm set registry https://registry.npmjs.org/bixby-cli
+      - run:
+          name: Authentificate with registry
+          command: echo "//registry.npmjs.org/bixby-cli/:_authToken=$NPM_TOKEN" > ~/bixby-cli/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+           
