@@ -1,4 +1,8 @@
 # CHANGELOG
+## [1.0.2] - 2019-06-15
+
+### Changed
+- Changed `error` message for connection error
 
 ## [1.0.1] - 2019-06-09
 
