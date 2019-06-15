@@ -31,8 +31,8 @@ export async function get (url:string): Promise<any> {
                 reject(e)
               }
             });
-          }).on('error', (e) => {
-            reject(e);
+          }).on('error', () => {
+            reject(`Can not connect to ${url} please verify your internet connection.`);
         })
     })
 }
