@@ -33,8 +33,16 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-      - attach_workspace:
-          at: ~/bixby-cli
+      - checkout
+      - run:
+          name: install-typescript
+          command: sudo npm install -g typescript
+      - run:
+          name: install-npm-dependencies
+          command: npm install
+      - run:
+          name: build-project
+          command: npm run build
       - run:
           name: Set registry URL
           command: npm set registry https://registry.npmjs.org/bixby-cli
