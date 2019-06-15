@@ -57,6 +57,6 @@ workflows:
             - test
           filters:
             tags:
-              only: /^v(\d+\.){2}\d+$/
+              only: /^v(\d+\.){2}\d+/
     
             
