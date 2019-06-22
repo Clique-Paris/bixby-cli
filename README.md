@@ -10,7 +10,7 @@ A CLI tool for Bixby Capsule development
 
 ## Installation 
 
-**BEFORE YOU INSTALL:** please read the (prerequisites)[#prerequisittes]
+**BEFORE YOU INSTALL:** please read the  [prerequisites](#prerequisites)
 
 ### Install globally
 

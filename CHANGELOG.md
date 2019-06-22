@@ -7,6 +7,7 @@
 - First version of instructions added in`README.md` file
 
 ### Security
+
 - `shelljs` `moderate` security issue fixed
 
 ## [1.0.3] - 2019-06-16
