@@ -1,6 +1,6 @@
 {
     "name": "bixby-cli",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A CLI for bixby capsule development",
     "main": "out/out-tsc/src/index.js",
     "scripts": {
