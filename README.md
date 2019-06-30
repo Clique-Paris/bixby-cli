@@ -7,6 +7,7 @@ A CLI tool for Bixby Capsule development
 ## Prerequisites
 
 - The CLI require Node 8.9 or higher, together with NPM 5.5.1 or higher.
+- **For development purpose only :**  grammars requires [NearleyJS](https://nearley.js.org/) `2.16.0` or higher.
 
 ## Installation 
 
