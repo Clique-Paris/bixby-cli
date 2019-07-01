@@ -1,16 +1,16 @@
-import { PrimitifType } from "../structs/PrimitifType.enum";
-import { ActionType } from "../structs/ActionType.enum";
-import {dialog as dialogHelper, training as trainingHelper}  from "./targets.helper";
-import { trainingId } from "../generators/capsule.generator"
-import * as shell from "shelljs";
 import * as fs from "fs";
+import * as shell from "shelljs";
+import { trainingId } from "../generators/capsule.generator";
+import { ActionType } from "../structs/ActionType.enum";
+import { PrimitifType } from "../structs/PrimitifType.enum";
+import {dialog as dialogHelper, training as trainingHelper}  from "./targets.helper";
 
 function jsCode(): string {
   return `module.exports.function = function (name) {
   return {
     name: name
   }
-}`
+}`;
 }
 
 function action(name: string, type: ActionType): string {
@@ -24,13 +24,13 @@ function action(name: string, type: ActionType): string {
       }
     }
     output (Person)
-}`
+}`;
 }
 
 function primitif(name: string, type: PrimitifType): string {
   return `${PrimitifType[type]} (${name[0].toUpperCase() + name.slice(1)}) {
   description (A sample ${name.toLowerCase()} primitif)
-}`
+}`;
 }
 
 function structure(name: string): string {
@@ -40,7 +40,7 @@ function structure(name: string): string {
     type (Name)
     min (Required) max (One)
   }
-}`
+}`;
 }
 
 function view(): string {
@@ -72,7 +72,7 @@ function view(): string {
       }
     }
   }
-}`
+}`;
 }
 
 function endpoints(): string {
@@ -83,17 +83,17 @@ function endpoints(): string {
       local-endpoint (hello.js)
     }
   }
-}`
+}`;
 }
 
-function capsule_bxb(id: string,targets: string[]): string {
+function capsule_bxb(id: string, targets: string[]): string {
   const targetText = () => {
     return targets.map((target: string) => {
-      return `target (bixby-mobile-${target})`
-    }).reduce((a:string, b:string) => {
-      return a+"\n"+b
-    },"");
-  }
+      return `target (bixby-mobile-${target})`;
+    }).reduce((a: string, b: string) => {
+      return a + "\n" + b;
+    }, "");
+  };
   return `capsule {
   id (${id})
   version (0.1.0)
@@ -106,7 +106,7 @@ function capsule_bxb(id: string,targets: string[]): string {
     modern-prompt-rejection
     support-halt-effect-in-computed-inputs
   }
-}`
+}`;
 }
 
 function dialog(): string {
@@ -119,7 +119,7 @@ function dialog(): string {
       expression (this.name)
     }
   }
-}`
+}`;
 }
 
 function templateMacroDef(local: string): string {
@@ -133,7 +133,7 @@ function templateMacroDef(local: string): string {
   content {
     template ("${dialogHelper(local)} #{value(name)} 👋")
   }
-}`
+}`;
 }
 
 function training(local: string, name: string) {
@@ -141,7 +141,7 @@ function training(local: string, name: string) {
   utterance ("[g:Hello] ${trainingHelper(local)} (${name})[v:Name]")
   plan ()
   last-modified (${Date.now()})
-}`
+}`;
 }
 
 function capsule_info(name: string, company: string = "__COMPANY_NAME__", iconUrl: string = "https://bixbydevelopers.com/dev/static/bixby2logo.svg"): string {
@@ -155,31 +155,31 @@ return `description {
 }`;
 }
 
-export function createNewCapsule(id: string,targets: string[],username: string): void {
-  const capsulePath = process.cwd() + "/" + id; 
+export function createNewCapsule(id: string, targets: string[], username: string): void {
+  const capsulePath = process.cwd() + "/" + id;
   shell.mkdir("-p", capsulePath);
-  fs.writeFileSync(capsulePath + "/capsule.bxb",capsule_bxb(id,targets),{encoding: "utf8"});
+  fs.writeFileSync(capsulePath + "/capsule.bxb", capsule_bxb(id, targets), {encoding: "utf8"});
   shell.mkdir("-p", capsulePath + "/assets");
-  const assetSourcePath = __dirname.replace(/\/bixby\-cli.*$/g,"/bixby-cli/assets/");
-  shell.cp("-f",assetSourcePath + "user.png", capsulePath + "/assets/user.png");
-  shell.mkdir("-p",capsulePath+"/code");
-  fs.writeFileSync(capsulePath+"/code/hello.js",jsCode(),{encoding: "utf8"});
-  shell.mkdir('-p', capsulePath + "/models/action");
-  fs.writeFileSync(capsulePath+"/models/action/Hello.model.bxb", action("Hello",ActionType.Search), {encoding: "utf8"});
-  shell.mkdir('-p', capsulePath + "/models/concept/primitif");
-  fs.writeFileSync(capsulePath+"/models/concept/primitif/Name.model.bxb", primitif("Name",PrimitifType.text), {encoding: "utf8"});
-  shell.mkdir('-p', capsulePath + "/models/concept/structure");
-  fs.writeFileSync(capsulePath+"/models/concept/structure/Person.model.bxb", structure("Person"), {encoding: "utf8"});
-  shell.mkdir('-p', capsulePath + "/resources/base/dialog");
-  fs.writeFileSync(capsulePath+ "/resources/base/" + id.split(".")[1] +".endpoints.bxb", endpoints(), {encoding: "utf8"});
-  fs.writeFileSync(capsulePath+ "/resources/base/dialog/hello.dialog.bxb", dialog(), {encoding: "utf8"});
-  shell.mkdir('-p', capsulePath + "/resources/base/view");
-  fs.writeFileSync(capsulePath+ "/resources/base/view/hello.view.bxb", view(), {encoding: "utf8"});
+  const assetSourcePath = __dirname.replace(/\/bixby\-cli.*$/g, "/bixby-cli/assets/");
+  shell.cp("-f", assetSourcePath + "user.png", capsulePath + "/assets/user.png");
+  shell.mkdir("-p", capsulePath + "/code");
+  fs.writeFileSync(capsulePath + "/code/hello.js", jsCode(), {encoding: "utf8"});
+  shell.mkdir("-p", capsulePath + "/models/action");
+  fs.writeFileSync(capsulePath + "/models/action/Hello.model.bxb", action("Hello", ActionType.Search), {encoding: "utf8"});
+  shell.mkdir("-p", capsulePath + "/models/concept/primitif");
+  fs.writeFileSync(capsulePath + "/models/concept/primitif/Name.model.bxb", primitif("Name", PrimitifType.text), {encoding: "utf8"});
+  shell.mkdir("-p", capsulePath + "/models/concept/structure");
+  fs.writeFileSync(capsulePath + "/models/concept/structure/Person.model.bxb", structure("Person"), {encoding: "utf8"});
+  shell.mkdir("-p", capsulePath + "/resources/base/dialog");
+  fs.writeFileSync(capsulePath + "/resources/base/" + id.split(".")[1] + ".endpoints.bxb", endpoints(), {encoding: "utf8"});
+  fs.writeFileSync(capsulePath + "/resources/base/dialog/hello.dialog.bxb", dialog(), {encoding: "utf8"});
+  shell.mkdir("-p", capsulePath + "/resources/base/view");
+  fs.writeFileSync(capsulePath + "/resources/base/view/hello.view.bxb", view(), {encoding: "utf8"});
   targets.map((target) => {
     const targetPath = capsulePath + "/resources/" + target;
-    shell.mkdir('-p', targetPath + "/training");
-    fs.writeFileSync(targetPath+"/training/t-0.training.bxb",training(target,username), {encoding: "utf8"});
-    fs.writeFileSync(targetPath+"/capsule-info.bxb",capsule_info(id.split(".")[1]), {encoding: "utf8"});
-    fs.writeFileSync(targetPath+"/nlg-strings.dialog.bxb",templateMacroDef(target),{encoding: "utf8"});
+    shell.mkdir("-p", targetPath + "/training");
+    fs.writeFileSync(targetPath + "/training/t-0.training.bxb", training(target, username), {encoding: "utf8"});
+    fs.writeFileSync(targetPath + "/capsule-info.bxb", capsule_info(id.split(".")[1]), {encoding: "utf8"});
+    fs.writeFileSync(targetPath + "/nlg-strings.dialog.bxb", templateMacroDef(target), {encoding: "utf8"});
   });
 }

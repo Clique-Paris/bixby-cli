@@ -8,7 +8,7 @@ export function error(message: string) {
     console.error(`${chalk.red("Error:")} ${message}`);
 }
 
-export function info(message:string) {
+export function info(message: string) {
     console.info(`${chalk.green("Info")} ${message}`);
 }
 
