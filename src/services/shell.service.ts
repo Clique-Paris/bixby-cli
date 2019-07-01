@@ -21,6 +21,6 @@ export class ShellService {
         return findResult.stdout.split("\n").filter((elem) => !elem.match(/^\s*$/g));
     }
 
-    public info() {
-    }
+    // public info() {
+    // }
 }

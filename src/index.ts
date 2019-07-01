@@ -9,25 +9,28 @@ import { Package } from "./structs/Package";
 const args = minimist(
     process.argv.slice(2),
     {
-        boolean: [
-            "help",
-            "version",
-            // 'all'
-        ],
         alias: {
             h: "help",
             v: "version",
             // A: 'all'
         },
+        boolean: [
+            "help",
+            "version",
+            // 'all'
+        ],
     },
-    );
+);
 
 if (args.help) {
+        // tslint:disable-next-line:no-console
         console.info("Available commands:");
+        // tslint:disable-next-line:no-console
         console.info(`\t${chalk.blue("new")} Creates a new workspace and an initial Bixby capsule`);
         process.exit(1);
     }
 if (args.version) {
+        // tslint:disable-next-line:no-console
         console.log(new Package().version);
         process.exit(1);
     }

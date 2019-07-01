@@ -3,7 +3,7 @@ import * as shell from "shelljs";
 import { trainingId } from "../generators/capsule.generator";
 import { ActionType } from "../structs/ActionType.enum";
 import { PrimitifType } from "../structs/PrimitifType.enum";
-import {dialog as dialogHelper, training as trainingHelper}  from "./targets.helper";
+import {dialog as dialogHelper, training as trainingHelper} from "./targets.helper";
 
 function jsCode(): string {
   return `module.exports.function = function (name) {
@@ -144,7 +144,11 @@ function training(local: string, name: string) {
 }`;
 }
 
-function capsule_info(name: string, company: string = "__COMPANY_NAME__", iconUrl: string = "https://bixbydevelopers.com/dev/static/bixby2logo.svg"): string {
+function capsule_info(
+  name: string,
+  company: string = "__COMPANY_NAME__",
+  iconUrl: string = "https://bixbydevelopers.com/dev/static/bixby2logo.svg",
+): string {
 return `description {
   displayName (${name})
   companyName (${company})
@@ -165,13 +169,43 @@ export function createNewCapsule(id: string, targets: string[], username: string
   shell.mkdir("-p", capsulePath + "/code");
   fs.writeFileSync(capsulePath + "/code/hello.js", jsCode(), {encoding: "utf8"});
   shell.mkdir("-p", capsulePath + "/models/action");
-  fs.writeFileSync(capsulePath + "/models/action/Hello.model.bxb", action("Hello", ActionType.Search), {encoding: "utf8"});
+  fs.writeFileSync(
+    (
+      capsulePath +
+      "/models/action/Hello.model.bxb"
+    ),
+    action("Hello", ActionType.Search),
+    {encoding: "utf8"},
+  );
   shell.mkdir("-p", capsulePath + "/models/concept/primitif");
-  fs.writeFileSync(capsulePath + "/models/concept/primitif/Name.model.bxb", primitif("Name", PrimitifType.text), {encoding: "utf8"});
+  fs.writeFileSync(
+    (
+      capsulePath +
+      "/models/concept/primitif/Name.model.bxb"
+    ),
+    primitif(
+      "Name",
+      PrimitifType.text,
+    ),
+    {
+      encoding: "utf8",
+    },
+  );
   shell.mkdir("-p", capsulePath + "/models/concept/structure");
   fs.writeFileSync(capsulePath + "/models/concept/structure/Person.model.bxb", structure("Person"), {encoding: "utf8"});
   shell.mkdir("-p", capsulePath + "/resources/base/dialog");
-  fs.writeFileSync(capsulePath + "/resources/base/" + id.split(".")[1] + ".endpoints.bxb", endpoints(), {encoding: "utf8"});
+  fs.writeFileSync(
+    (
+      capsulePath +
+      "/resources/base/" +
+      id.split(".")[1] +
+      ".endpoints.bxb"
+    ),
+    endpoints(),
+    {
+      encoding: "utf8",
+    },
+  );
   fs.writeFileSync(capsulePath + "/resources/base/dialog/hello.dialog.bxb", dialog(), {encoding: "utf8"});
   shell.mkdir("-p", capsulePath + "/resources/base/view");
   fs.writeFileSync(capsulePath + "/resources/base/view/hello.view.bxb", view(), {encoding: "utf8"});

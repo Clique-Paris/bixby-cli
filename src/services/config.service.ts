@@ -1,4 +1,4 @@
-const Configstore = require("configstore");
+import Configstore from "configstore";
 import { Package } from "../structs/Package";
 
 export class ConfigService {
