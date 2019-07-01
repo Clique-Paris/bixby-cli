@@ -4,10 +4,11 @@
     "description": "A CLI for bixby capsule development",
     "main": "out/out-tsc/src/index.js",
     "scripts": {
-        "prestart": "tsc",
-        "build": "tsc",
+        "prestart": "npm run build",
+        "build": "npm run compile && tsc",
         "start": "node out/out-tsc/src/index.js",
-        "test": "npm run build && node node_modules/jasmine/bin/jasmine"
+        "test": "npm run build && node node_modules/jasmine/bin/jasmine",
+        "compile": "sh scripts/compile-grammars.sh"
     },
     "bin": {
         "bxb": "./out/out-tsc/src/index.js"
@@ -40,6 +41,7 @@
         "configstore": "^4.0.0",
         "inquirer": "^6.3.1",
         "minimist": "^1.2.0",
+        "nearley": "^2.16.0",
         "shelljs": "^0.8.3"
     },
     "devDependencies": {
