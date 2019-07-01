@@ -1,8 +1,8 @@
-const Configstore = require("configstore");
+import Configstore from "configstore";
 import { Package } from "../structs/Package";
 
 export class ConfigService {
-    private config:any;
+    private config: any;
     private pkg: Package;
     constructor() {
         this.pkg = new Package();
@@ -13,6 +13,6 @@ export class ConfigService {
         return this.config.get(key);
     }
     public set(key: string, value: any) {
-        return this.config.set(key,value);
+        return this.config.set(key, value);
     }
 }

@@ -1,8 +1,8 @@
-import { get } from "../helpers/https.helper";
-import { selectTargets } from "../helpers/prompt.helper"
-import { info } from "../helpers/logger.helper";
-import { createNewCapsule } from "../helpers/capsule.helper";
 import * as os from "os";
+import { createNewCapsule } from "../helpers/capsule.helper";
+import { get } from "../helpers/https.helper";
+import { info } from "../helpers/logger.helper";
+import { selectTargets } from "../helpers/prompt.helper";
 
 export class CommandService {
     private commands: string[];
@@ -12,7 +12,7 @@ export class CommandService {
         this.commands = args;
         // this.initialiser = new Initialiser();
     }
-    
+
     public async run(): Promise<string> {
         switch (this.commands[0]) {
             // case "generate":
@@ -40,7 +40,7 @@ export class CommandService {
             //     console.log("Builder must be called");
             //     break;
             case "new":
-                return this.newProject(this.commands[1],this.commands.slice(2));
+                return this.newProject(this.commands[1], this.commands.slice(2));
                 break;
             // case "init":
             //     console.log("Initialiser must be called");
@@ -50,37 +50,37 @@ export class CommandService {
             default:
                 return Promise.reject(`${this.commands.join(" ")} can not yet be handled.`);
                 break;
-        } 
+        }
     }
 
     private async newProject(name: string, targets: string[]): Promise<string> {
         if (name.match(/\w+\.\w+/g) === null) {
-            name = "playground."+name.toLowerCase();
+            name = "playground." + name.toLowerCase();
             info("Capsule name does not contains a namespace. It'll initialised as a playground capsule");
         }
-        var selectedTargets: string[] = targets
+        let selectedTargets: string[] = targets;
         if (targets.length === 0 || targets === undefined || targets === null) {
            selectedTargets = await selectTargets(await this.getTargets());
         }
-        this.createProjectFiles(name,selectedTargets);
+        this.createProjectFiles(name, selectedTargets);
         return Promise.resolve(`A new capsule created in ${process.cwd()}/${name} successfully`);
     }
 
-    private createProjectFiles(name: string,targets: string[]) {
-        const username = os.userInfo().username; 
-        createNewCapsule(name,targets,username);
+    private createProjectFiles(name: string, targets: string[]) {
+        const username = os.userInfo().username;
+        createNewCapsule(name, targets, username);
     }
 
     // private generate(module: string, type: string, name: string) {
     // }
 
     private async getTargets(): Promise<string[]> {
-        var $ = await get("https://bixbydevelopers.com/dev/docs/reference/type/capsule.targets.target");
+        const $ = await get("https://bixbydevelopers.com/dev/docs/reference/type/capsule.targets.target");
         return Promise.resolve(
             $("table").html().match(/<code>[a-z]{2}\-[A-Z]{2}<\/code>/g).map((target: string) => {
-                var result = target.match(/[a-z]{2}\-[A-Z]{2}/) || [];
+                const result = target.match(/[a-z]{2}\-[A-Z]{2}/) || [];
                 return result[0];
-            })
+            }),
         );
     }
 }

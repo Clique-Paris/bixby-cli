@@ -4,5 +4,5 @@ export enum PrimitifType {
     integer,
     name,
     qualified,
-    text
+    text,
 }

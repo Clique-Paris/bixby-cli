@@ -11,5 +11,5 @@ export enum ActionType {
     Commit,
     RefreshActivity,
     UpdateActivity,
-    CancelActivity
+    CancelActivity,
 }

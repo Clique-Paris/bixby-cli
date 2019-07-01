@@ -16,6 +16,7 @@
 //         this.configservice = new ConfigService();
 //     }
 //     public async init () {
+// tslint:disable-next-line:max-line-length
 //         this.capsules = this.shell.find("capsule.bxb").concat(this.shell.find("capsule.6t")).map((capsule) => path.parse(capsule))
 //         this.configservice.set("capsules.path",this.capsules);
 //         this.configservice.set("capsules.default",await this.prompter());

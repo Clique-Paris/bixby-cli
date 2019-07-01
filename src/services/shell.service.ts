@@ -5,7 +5,7 @@ export class ShellService {
     // private platform: string;
     // private tmpdir: string;
 
-    constructor (
+    constructor(
         home: string,
         // platform: string,
         // tmpdir: string
@@ -17,10 +17,10 @@ export class ShellService {
 
     public find(fileName: string) {
         const command = `find ${this.home} -name "${fileName}" 2>&1 | grep -v "Permission denied"`;
-        const findResult = shell.exec(command,{silent:true});
-        return findResult.stdout.split("\n").filter((elem) => !elem.match(/^\s*$/g))
+        const findResult = shell.exec(command, {silent: true});
+        return findResult.stdout.split("\n").filter((elem) => !elem.match(/^\s*$/g));
     }
 
-    public info() {
-    }
+    // public info() {
+    // }
 }
