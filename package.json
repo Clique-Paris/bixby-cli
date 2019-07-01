@@ -7,7 +7,8 @@
         "prestart": "tsc",
         "build": "tsc",
         "start": "node out/out-tsc/src/index.js",
-        "test": "npm run build && node node_modules/jasmine/bin/jasmine"
+        "test": "npm run build && node node_modules/jasmine/bin/jasmine",
+        "lint": "node_modules/tslint/bin/tslint --project . --fix"
     },
     "bin": {
         "bxb": "./out/out-tsc/src/index.js"
@@ -47,6 +48,7 @@
         "jasmine": "^3.4.0",
         "ts-loader": "^6.0.2",
         "ts-node": "^8.2.0",
+        "tslint": "^5.18.0",
         "typescript": "^3.5.2"
     }
 }
