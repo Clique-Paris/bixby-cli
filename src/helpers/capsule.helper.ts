@@ -86,7 +86,7 @@ function endpoints(): string {
 }`
 }
 
-function capsule_bxb(id: string,targets: string[]): string {
+export function capsule_bxb(id: string,targets: string[]): string {
   const targetText = () => {
     return targets.map((target: string) => {
       return `target (bixby-mobile-${target})`
