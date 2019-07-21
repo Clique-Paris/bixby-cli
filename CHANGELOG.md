@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.1.5] - 2019-07-21
+
+### Changed
+
+- `lodash` package's version changed in `package-lock.json` file
+
+### Security
+
+- Security issue related to `lodash` dependency is fixed
+
 ## [0.1.4] - 2019-06-22
 
 ### Added
